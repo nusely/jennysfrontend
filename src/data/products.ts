@@ -9,6 +9,8 @@ export interface Product {
   description: string;
   arcColor: string;
   ratingCardColor: string;
+  price: number;
+  weight: string;
 }
 
 export const products: Product[] = [
@@ -22,7 +24,9 @@ export const products: Product[] = [
     rating: 5.0,
     description: "A versatile blend of carefully selected organic spices perfect for enhancing the flavor of your favorite dishes. This all-purpose mix combines traditional spices with modern culinary techniques.",
     arcColor: "spice-pink",
-    ratingCardColor: "bg-pink-300"
+    ratingCardColor: "bg-pink-300",
+    price: 45.00,
+    weight: "100g"
   },
   {
     id: '2',
@@ -34,7 +38,9 @@ export const products: Product[] = [
     rating: 4.8,
     description: "Authentic curry powder blend with aromatic spices that bring depth and warmth to your curries. Perfect for both traditional and fusion dishes.",
     arcColor: "spice-red",
-    ratingCardColor: "bg-red-300"
+    ratingCardColor: "bg-red-300",
+    price: 42.00,
+    weight: "100g"
   },
   {
     id: '3',
@@ -46,7 +52,9 @@ export const products: Product[] = [
     rating: 4.9,
     description: "Traditional Ghanaian spice mix perfect for making delicious kelewele (spiced plantain). This blend captures the authentic street food experience.",
     arcColor: "spice-yellow",
-    ratingCardColor: "bg-yellow-300"
+    ratingCardColor: "bg-yellow-300",
+    price: 38.00,
+    weight: "100g"
   },
   {
     id: '4',
@@ -58,6 +66,8 @@ export const products: Product[] = [
     rating: 5.0,
     description: "Specially crafted spice blend designed to bring out the best in chicken dishes. Whether you're grilling, roasting, or pan-frying, this mix delivers exceptional flavor.",
     arcColor: "spice-purple",
-    ratingCardColor: "bg-purple-300"
+    ratingCardColor: "bg-purple-300",
+    price: 48.00,
+    weight: "100g"
   }
 ];

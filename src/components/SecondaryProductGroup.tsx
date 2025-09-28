@@ -45,46 +45,46 @@ const SecondaryProductGroup: React.FC<SecondaryProductGroupProps> = ({ product }
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-gray-300 w-full max-w-sm h-[600px] flex flex-col ring-1 ring-gray-100">
-      {/* Secondary Product Image - Takes up 50% of card */}
-      <div className="relative h-80 bg-gray-50 rounded-t-2xl flex items-center justify-center overflow-hidden">
-        {/* Secondary Product Image - Much larger without container */}
+    <div className="bg-white rounded-2xl shadow-xl border border-gray-300 w-full max-w-sm h-[500px] sm:h-[600px] flex flex-col ring-1 ring-gray-100">
+      {/* Secondary Product Image - Responsive height */}
+      <div className="relative h-60 sm:h-80 bg-gray-50 rounded-t-2xl flex items-center justify-center overflow-hidden">
+        {/* Secondary Product Image - Responsive sizing */}
         <img 
           src={product.secondaryImage}
           alt={product.productName}
-          className="w-72 h-72 object-contain"
+          className="w-48 h-48 sm:w-72 sm:h-72 object-contain"
         />
       </div>
 
-      {/* Content Section - Stretched to fill remaining space */}
-      <div className="p-6 flex-1 flex flex-col">
+      {/* Content Section - Responsive padding */}
+      <div className="p-4 sm:p-6 flex-1 flex flex-col">
         {/* Star Rating */}
-        <div className="flex justify-center mb-4 space-x-1">
+        <div className="flex justify-center mb-3 sm:mb-4 space-x-1">
           {renderStars(product.rating)}
         </div>
 
         {/* Product Name */}
-        <h4 className="text-lg font-bold text-gray-800 text-center mb-3 uppercase tracking-wide">
+        <h4 className="text-base sm:text-lg font-bold text-gray-800 text-center mb-2 sm:mb-3 uppercase tracking-wide">
           {product.productName}
         </h4>
 
-            {/* Product Description */}
-            <p className="text-gray-800 text-sm text-left mb-6 leading-relaxed">
-              {product.description}
-            </p>
+        {/* Product Description */}
+        <p className="text-gray-800 text-xs sm:text-sm text-left mb-4 sm:mb-6 leading-relaxed">
+          {product.description}
+        </p>
 
         {/* Action Buttons - Pushed to bottom */}
         <div className="mt-auto">
-          <div className="flex space-x-3">
+          <div className="flex space-x-2 sm:space-x-3">
             {/* Order Now Button */}
-            <button className="flex-1 bg-red-500 text-white py-3 px-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors duration-200 shadow-sm">
-              <FontAwesomeIcon icon={faShoppingCart} className="text-lg" />
+            <button className="flex-1 bg-red-500 text-white py-2 sm:py-3 px-3 sm:px-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors duration-200 shadow-sm text-sm sm:text-base">
+              <FontAwesomeIcon icon={faShoppingCart} className="text-sm sm:text-lg" />
               <span>Order Now</span>
             </button>
             
             {/* View Button */}
-            <button className="bg-gray-200 text-gray-700 py-3 px-4 rounded-xl hover:bg-gray-300 transition-colors duration-200 shadow-sm">
-              <FontAwesomeIcon icon={faEye} className="text-lg" />
+            <button className="bg-gray-200 text-gray-700 py-2 sm:py-3 px-3 sm:px-4 rounded-xl hover:bg-gray-300 transition-colors duration-200 shadow-sm">
+              <FontAwesomeIcon icon={faEye} className="text-sm sm:text-lg" />
             </button>
           </div>
         </div>

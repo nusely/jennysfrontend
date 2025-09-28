@@ -7,34 +7,13 @@ interface ProductObjectGroupProps {
 }
 
 const ProductObjectGroup: React.FC<ProductObjectGroupProps> = ({ product }) => {
-  const getArcColor = (arcColor: string) => {
-    switch (arcColor) {
-      case 'spice-pink':
-        return '#F9A8D4';
-      case 'spice-red':
-        return '#DC2626';
-      case 'spice-yellow':
-        return '#FCD34D';
-      case 'spice-purple':
-        return '#8B5CF6';
-      case 'spice-green':
-        return '#10B981';
-      case 'spice-orange':
-        return '#F97316';
-      default:
-        return '#F9A8D4';
-    }
-  };
-
-  // Define the arc path as an SVG path
-  const arcPath = "M 50 200 Q 200 50 350 200";
   
   return (
-    <div className="relative w-full max-w-6xl mx-auto p-6 h-96">
+    <div className="relative w-full max-w-6xl mx-auto p-4 sm:p-6 h-auto sm:h-96">
       {/* Main Content Container */}
-      <div className="relative z-10 flex items-center justify-between h-full">
-        {/* Left Side - Product Image */}
-        <div className="flex-1 flex justify-center">
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center lg:justify-between h-full w-full">
+        {/* Product Image - Top on mobile, left on desktop */}
+        <div className="flex-1 flex justify-center mb-6 lg:mb-0">
           <motion.div
             className="relative"
             initial={{ opacity: 0, x: 200, y: -120, rotate: -45 }}
@@ -50,11 +29,11 @@ const ProductObjectGroup: React.FC<ProductObjectGroupProps> = ({ product }) => {
               delay: 0.2
             }}
           >
-            {/* Main Product Image - Slides in from top right on circular path */}
+            {/* Main Product Image - Responsive sizing */}
             <motion.img
               src={product.mainImage}
               alt={product.productName}
-              className="w-72 h-72 object-contain drop-shadow-2xl"
+              className="w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 object-contain drop-shadow-2xl"
               animate={{
                 y: [0, -15, 0], // Gentle floating animation
               }}
@@ -69,16 +48,16 @@ const ProductObjectGroup: React.FC<ProductObjectGroupProps> = ({ product }) => {
           </motion.div>
         </div>
 
-        {/* Right Side - Product Details */}
+        {/* Product Details - Bottom on mobile, right on desktop */}
         <motion.div 
-          className="flex-1 flex flex-col justify-center space-y-6 pr-8"
+          className="flex-1 flex flex-col justify-center space-y-4 sm:space-y-6 text-center lg:text-left lg:pr-8"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           {/* Business Name */}
           <motion.h2 
-            className="text-sm font-medium text-gray-600 tracking-wider uppercase"
+            className="text-xs sm:text-sm font-medium text-gray-600 tracking-wider uppercase"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
@@ -87,7 +66,7 @@ const ProductObjectGroup: React.FC<ProductObjectGroupProps> = ({ product }) => {
           </motion.h2>
 
           {/* Product Name */}
-          <div className="space-y-2">
+          <div className="space-y-1 sm:space-y-2">
             {/* Split product name and make last part red */}
             {(() => {
               const words = product.productName.split(' ');
@@ -98,7 +77,7 @@ const ProductObjectGroup: React.FC<ProductObjectGroupProps> = ({ product }) => {
                 <>
                   {/* First part - Most of the name */}
                   <motion.h1
-                    className="text-4xl font-bold text-gray-800 uppercase"
+                    className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 uppercase"
                     initial={{ opacity: 0, y: 30, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ 
@@ -113,7 +92,7 @@ const ProductObjectGroup: React.FC<ProductObjectGroupProps> = ({ product }) => {
                   
                   {/* Second part - Last two words in red */}
                   <motion.h1
-                    className="text-5xl font-bold text-red-600 uppercase"
+                    className="text-3xl sm:text-4xl lg:text-5xl font-bold text-red-600 uppercase"
                     initial={{ opacity: 0, y: 30, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ 
@@ -131,7 +110,7 @@ const ProductObjectGroup: React.FC<ProductObjectGroupProps> = ({ product }) => {
           </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-3 mt-6">
+          <div className="flex flex-wrap gap-2 sm:gap-3 mt-4 sm:mt-6 justify-center lg:justify-start">
             {product.tags.map((tag, index) => {
               // Color coding based on tag content
               const getTagColors = (tagText: string) => {
@@ -152,7 +131,7 @@ const ProductObjectGroup: React.FC<ProductObjectGroupProps> = ({ product }) => {
               return (
                 <motion.button
                   key={index}
-                  className={`px-5 py-3 rounded-full text-sm font-bold uppercase tracking-wide shadow-lg border-2 transition-all duration-300 cursor-pointer transform ${getTagColors(tag)}`}
+                  className={`px-3 sm:px-4 lg:px-5 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wide shadow-lg border-2 transition-all duration-300 cursor-pointer transform ${getTagColors(tag)}`}
                   initial={{ opacity: 0, scale: 0.8, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{ 

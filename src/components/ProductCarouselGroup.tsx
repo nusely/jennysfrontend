@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Product } from '../data/products';
 
 interface ProductCarouselGroupProps {
@@ -30,19 +28,11 @@ const ProductCarouselGroup: React.FC<ProductCarouselGroupProps> = ({
   }, [selectedIndex, products.length, onProductSelect]);
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-4 sm:p-6">
-      <div className="flex items-center justify-between">
-        {/* Left Arrow */}
-        <button
-          onClick={onPrevious}
-          className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center hover:bg-gray-400 transition-colors duration-200 shadow-sm ml-4"
-        >
-          <FontAwesomeIcon icon={faChevronLeft} className="text-gray-700 text-lg" />
-        </button>
-
-        {/* Products Container */}
+    <div className="w-full max-w-4xl mx-auto p-2 sm:p-4 lg:p-6">
+      <div className="flex items-center justify-center w-full">
+        {/* Products Container - Mobile optimized and centered */}
         <div 
-          className="flex-1 flex justify-center items-center space-x-4 sm:space-x-8 mx-4 sm:mx-8 overflow-x-auto scrollbar-hide py-2"
+          className="flex justify-center items-center space-x-2 sm:space-x-4 lg:space-x-8 overflow-x-auto scrollbar-hide py-2 w-full"
           onTouchStart={(e) => {
             const touchStart = e.touches[0].clientX;
             e.currentTarget.addEventListener('touchend', (endEvent) => {
@@ -64,13 +54,13 @@ const ProductCarouselGroup: React.FC<ProductCarouselGroupProps> = ({
               className="flex flex-col items-center cursor-pointer relative"
               onClick={() => onProductSelect(index)}
             >
-              {/* Product Image Container */}
-              <div className="relative mb-3 p-4">
+              {/* Product Image Container - Smaller on mobile */}
+              <div className="relative mb-2 sm:mb-3 p-2 sm:p-4">
                 {/* Product Image with enhanced selection styling */}
                 <motion.div
-                  className={`w-20 h-20 rounded-full overflow-visible shadow-sm ${
+                  className={`w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full overflow-visible shadow-sm ${
                     selectedIndex === index 
-                      ? 'ring-4 ring-pink-300 ring-offset-2 ring-offset-white scale-110' 
+                      ? 'ring-2 sm:ring-4 ring-pink-300 ring-offset-1 sm:ring-offset-2 ring-offset-white scale-110' 
                       : 'opacity-70 hover:opacity-100'
                   }`}
                   whileHover={{ scale: selectedIndex === index ? 1.15 : 1.05 }}
@@ -90,9 +80,9 @@ const ProductCarouselGroup: React.FC<ProductCarouselGroupProps> = ({
                 </motion.div>
               </div>
 
-              {/* Product Name */}
+              {/* Product Name - Hidden on mobile, shown on larger screens */}
               <motion.span
-                className={`text-xs text-center font-medium max-w-24 leading-tight ${
+                className={`hidden sm:block text-xs text-center font-medium max-w-24 leading-tight ${
                   selectedIndex === index ? 'text-gray-800 font-semibold' : 'text-gray-600'
                 }`}
                 animate={{
@@ -105,14 +95,6 @@ const ProductCarouselGroup: React.FC<ProductCarouselGroupProps> = ({
             </div>
           ))}
         </div>
-
-        {/* Right Arrow */}
-        <button
-          onClick={onNext}
-          className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center hover:bg-gray-400 transition-colors duration-200 shadow-sm mr-4"
-        >
-          <FontAwesomeIcon icon={faChevronRight} className="text-gray-700 text-lg" />
-        </button>
       </div>
     </div>
   );
